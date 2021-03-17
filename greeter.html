@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一个TypeScript Web应用</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class Some {
+        names = 'hello'
+        age = 1
+        constructor(name, age) {
+            this.name = name
+            this.age = age
+        }
+        say() {
+            console.log('names:', Some.names, 'age:', Some.age)
+            console.log('this.name:', this.name, 'this.age:', this.age)
+        }
+    }
+    const a = new Some('小明', 3)
+    console.log(a)
+    a.say()
+    console.dir(Some)
+
+    let somea = Object.create(null)
+    somea = Object.assign(somea, { a: 'b' })
+    console.log(
+        'somea:', somea, 
+        Array.isArray(somea), typeof somea,
+        somea.constructor === Array
+    )
+    // somea.forEach((item, index) => {
+    //     console.log('item:', item, 'index:', index)
+    // })
+</script>
+</html>
