@@ -23,3 +23,36 @@ function someA(str: string | string[] | null) {
 		console.log(str)
 	}
 }
+
+interface Shape {
+	kind: 'circle' | 'square',
+	radius?: number, // circle时存在
+	sideLength?: number // square时存在
+}
+
+function getArea(shape: Shape) {
+	return Math.PI * shape.radius ** 2 // shape.radius可能为undefined
+}
+
+function getArea1(shape: Shape) {
+	if (shape.kind === 'circle') {
+		return Math.PI * shape.radius ** 2 // ts并不知道radius可kind的关系
+	}
+}
+
+function getArea2(shape: Shape) {
+	if (shape.kind === 'circle') {
+		return Math.PI * shape.radius! ** 2 // 加一个断言，告诉ts这里必有radius,但这不是最好的办法
+	}
+}
+
+interface Circle {
+	kind: 'circle',
+	radius: number
+}
+interface Square {
+	kind: 'square',
+	sideLength: number
+}
+
+type Shpes = Circle | Square
